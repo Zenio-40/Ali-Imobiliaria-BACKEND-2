@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AfricasTalking.NET" Version="1.2.4" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.7" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.14.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="C02.Aplication\" />
+    <Folder Include="C02.Aplication\AuthUseCase\" />
+    <Folder Include="C02.Aplication\AuthUseCase\Command\" />
+    <Folder Include="C02.Aplication\AuthUseCase\DTOs\" />
+    <Folder Include="C02.Aplication\CasosUso\FuncionarioUseCase\Queries\" />
+    <Folder Include="C02.Aplication\Servico\" />
+    <Folder Include="C02.Aplication\Servico\IPasswordService\" />
+    <Folder Include="C02.Aplication\Servico\ISmsService\" />
+    <Folder Include="C02.Aplication\Servico\ITokenService\" />
+    <Folder Include="C03.Infra\Data\" />
+    <Folder Include="C03.Infra\Repositorios\tb01_Permissao\" />
+    <Folder Include="C03.Infra\Repositorios\tb02_Perfil\" />
+    <Folder Include="C03.Infra\Repositorios\tb03_PerfilPermissao\" />
+    <Folder Include="C03.Infra\Repositorios\tb04_Funcionario\" />
+    <Folder Include="C03.Infra\Repositorios\tb05_Credencial\" />
+    <Folder Include="C03.Infra\Repositorios\tb06_Cliente\" />
+    <Folder Include="C03.Infra\Repositorios\tb07_Telefone\" />
+    <Folder Include="C03.Infra\Repositorios\tb08_Email\" />
+    <Folder Include="C03.Infra\Repositorios\tb10_Tipologia\" />
+    <Folder Include="C03.Infra\Repositorios\tb11_Imovel\" />
+    <Folder Include="C03.Infra\Repositorios\tb12_Foto\" />
+    <Folder Include="C03.Infra\Repositorios\tb13_Video\" />
+    <Folder Include="C03.Infra\Repositorios\tb14_Provincia\" />
+    <Folder Include="C03.Infra\Repositorios\tb16_Bairro\" />
+    <Folder Include="C03.Infra\Repositorios\tb17_Endereco\" />
+    <Folder Include="C03.Infra\Repositorios\tb18_Proprietario\" />
+    <Folder Include="C03.Infra\Repositorios\tb19_Estado_Solicitacao\" />
+    <Folder Include="C03.Infra\Repositorios\tb20_Solicitacao\" />
+    <Folder Include="C03.Infra\Repositorios\tb21_Favorito\" />
+    <Folder Include="C03.Infra\Servico\AuthService\" />
+    <Folder Include="C03.Infra\Servico\SmsService\" />
+  </ItemGroup>
+
+</Project>

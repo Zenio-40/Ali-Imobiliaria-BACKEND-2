@@ -1,0 +1,39 @@
+@Corretora_HostAddress = http://localhost:5190
+
+### Cadastrar Funcionário Admin
+POST {{Corretora_HostAddress}}/api/admin/funcionarios
+Content-Type: application/json
+
+{
+    "funcionarioNome": "Admin Principal",
+    "funcionarioTelefone": "923456789",
+    "funcionarioIdPerfil": 1
+}
+
+### Login Funcionário
+POST {{Corretora_HostAddress}}/api/auth/login/funcionario
+Content-Type: application/json
+
+{
+    "telefone": "923456789",
+    "senha": "SENHA_RECEBIDA_POR_SMS"
+}
+
+### Listar Funcionários
+GET {{Corretora_HostAddress}}/api/admin/funcionarios?pagina=1&quantidade=20
+
+### Cadastrar Cliente
+POST {{Corretora_HostAddress}}/api/cliente
+Content-Type: application/json
+
+{
+    "clienteNome": "Maria Silva",
+    "clienteTelefone": "911222333",
+    "clienteEmail": "maria@email.com",
+    "clienteIdPerfil": 2
+}
+
+### Listar Clientes
+GET {{Corretora_HostAddress}}/api/cliente?pagina=1&quantidade=20
+
+###
