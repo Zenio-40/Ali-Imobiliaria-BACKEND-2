@@ -7,7 +7,6 @@ public class CadastrarImovel(
     Corretora.C01.Domain.Interfaces.IPesquisarPorIdRepositorio<tb09_tipo_imovelModel> pesquisarTipo,
     Corretora.C01.Domain.Interfaces.IPesquisarPorIdRepositorio<tb10_tipologiaModel> pesquisarTipologia,
     Corretora.C01.Domain.Interfaces.IPesquisarPorIdRepositorio<tb04_funcionarioModel> pesquisarFuncionario,
-    Corretora.C01.Domain.Interfaces.IPesquisarPorIdRepositorio<tb18_proprietarioModel> pesquisarProprietario,
     Corretora.C01.Domain.Interfaces.IPesquisarPorIdRepositorio<tb16_bairroModel> pesquisarBairro,
     Corretora.C01.Domain.Interfaces.ICadastrarRepositorio<tb11_imovelModel> cadastrar)
 {
@@ -22,11 +21,6 @@ public class CadastrarImovel(
         var (funcionario, _, _) = await pesquisarFuncionario.PesquisarPorIdAsync(dto.IdFuncionario);
         if (funcionario is null) return (null, "Funcionario nao encontrado", 404);
 
-        if (dto.IdProprietario.HasValue)
-        {
-            var (proprietario, _, _) = await pesquisarProprietario.PesquisarPorIdAsync(dto.IdProprietario.Value);
-            if (proprietario is null) return (null, "Proprietario nao encontrado", 404);
-        }
 
         var (bairro, _, _) = await pesquisarBairro.PesquisarPorIdAsync(dto.IdBairro);
         if (bairro is null) return (null, "Bairro nao encontrado", 404);
@@ -38,7 +32,6 @@ public class CadastrarImovel(
             tb09_tipo_imovelModel = dto.IdTipoImovel,
             tb10_tipologiaModel = dto.IdTipologia,
             tb04_funcionarioModel = dto.IdFuncionario,
-            tb18_proprietarioModel = dto.IdProprietario,
             Estado = true,
             EstadoAprovacao = "Pendente",
             Foto = dto.Fotos

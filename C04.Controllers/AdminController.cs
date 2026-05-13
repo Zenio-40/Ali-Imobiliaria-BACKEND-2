@@ -9,9 +9,6 @@ using Corretora.C02.Aplication.CasosUso.ImovelUseCase.DTOs;
 using Corretora.C02.Aplication.CasosUso.ImovelUseCase.Queries;
 using Corretora.C02.Aplication.CasosUso.PerfilUseCase.Command;
 using Corretora.C02.Aplication.CasosUso.PerfilUseCase.DTOs;
-using Corretora.C02.Aplication.CasosUso.ProprietarioUseCase.Command;
-using Corretora.C02.Aplication.CasosUso.ProprietarioUseCase.DTOs;
-using Corretora.C02.Aplication.CasosUso.ProprietarioUseCase.Queries;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.Command;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.DTOs;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.Queries;
@@ -29,10 +26,6 @@ public class AdminController : ControllerBase
     private readonly PesquisarFuncionarioPorId _pesquisarFuncionarioPorId;
     private readonly PesquisarTodosFuncionarios _pesquisarTodosFuncionarios;
 
-    private readonly CadastrarProprietario _cadastrarProprietario;
-    private readonly ActualizarProprietario _actualizarProprietario;
-    private readonly PesquisarProprietarioPorId _pesquisarProprietarioPorId;
-    private readonly PesquisarTodosProprietarios _pesquisarTodosProprietarios;
 
     private readonly CadastrarImovel _cadastrarImovel;
     private readonly ActualizarImovel _actualizarImovel;
@@ -55,10 +48,6 @@ public class AdminController : ControllerBase
         DesativarFuncionario desativarFuncionario,
         PesquisarFuncionarioPorId pesquisarFuncionarioPorId,
         PesquisarTodosFuncionarios pesquisarTodosFuncionarios,
-        CadastrarProprietario cadastrarProprietario,
-        ActualizarProprietario actualizarProprietario,
-        PesquisarProprietarioPorId pesquisarProprietarioPorId,
-        PesquisarTodosProprietarios pesquisarTodosProprietarios,
         CadastrarImovel cadastrarImovel,
         ActualizarImovel actualizarImovel,
         DesativarImovel desativarImovel,
@@ -77,10 +66,6 @@ public class AdminController : ControllerBase
         _pesquisarFuncionarioPorId = pesquisarFuncionarioPorId;
         _pesquisarTodosFuncionarios = pesquisarTodosFuncionarios;
 
-        _cadastrarProprietario = cadastrarProprietario;
-        _actualizarProprietario = actualizarProprietario;
-        _pesquisarProprietarioPorId = pesquisarProprietarioPorId;
-        _pesquisarTodosProprietarios = pesquisarTodosProprietarios;
 
         _cadastrarImovel = cadastrarImovel;
         _actualizarImovel = actualizarImovel;
@@ -136,36 +121,6 @@ public class AdminController : ControllerBase
     }
 
 
-
-    [HttpPost("proprietarios")]
-    public async Task<IActionResult> CadastrarProprietario([FromBody] CadastrarProprietarioDTO dto)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-        var (dados, mensagem, codigo) = await _cadastrarProprietario.Executar(dto);
-        return StatusCode(codigo, new { dados, mensagem, codigo });
-    }
-
-    [HttpPut("proprietarios")]
-    public async Task<IActionResult> AtualizarProprietario([FromBody] ActualizarProprietarioDTO dto)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-        var (dados, mensagem, codigo) = await _actualizarProprietario.Executar(dto);
-        return StatusCode(codigo, new { dados, mensagem, codigo });
-    }
-
-    [HttpGet("proprietarios")]
-    public async Task<IActionResult> ListarProprietarios([FromQuery] int pagina = 1, [FromQuery] int quantidade = 20)
-    {
-        var (dados, mensagem, codigo) = await _pesquisarTodosProprietarios.Executar(pagina, quantidade);
-        return StatusCode(codigo, new { dados, mensagem, codigo });
-    }
-
-    [HttpGet("proprietarios/{id}")]
-    public async Task<IActionResult> ObterProprietario(int id)
-    {
-        var (dados, mensagem, codigo) = await _pesquisarProprietarioPorId.Executar(id);
-        return StatusCode(codigo, new { dados, mensagem, codigo });
-    }
 
     [HttpPost("imoveis")]
     public async Task<IActionResult> CadastrarImovel([FromBody] CadastrarImovelDTO dto)
@@ -246,7 +201,6 @@ public class AdminController : ControllerBase
     {
         var (imoveis, _, _) = await _pesquisarImoveisDisponiveis.Executar(1, 100);
         var (clientes, _, _) = await _pesquisarTodosClientes.Executar(1, 100);
-        var (proprietarios, _, _) = await _pesquisarTodosProprietarios.Executar(1, 100);
 
         return Ok(new
         {
@@ -255,7 +209,6 @@ public class AdminController : ControllerBase
             {
                 totalImoveis = imoveis?.Count() ?? 0,
                 totalClientes = clientes?.Count() ?? 0,
-                totalProprietarios = proprietarios?.Count() ?? 0
             }
         });
     }

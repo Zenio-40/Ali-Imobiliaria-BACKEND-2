@@ -20,7 +20,6 @@ public class CadastrarImovelDTO
     [Required(ErrorMessage = "Selecione o funcionario responsavel.")]
     public int IdFuncionario { get; set; }
 
-    public int? IdProprietario { get; set; }
 
     [Required(ErrorMessage = "Selecione o bairro.")]
     public int IdBairro { get; set; }

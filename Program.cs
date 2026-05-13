@@ -2,6 +2,7 @@ using Corretora;
 using Corretora.C03.Infra.Data;
 using Scalar.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -15,8 +16,6 @@ using Corretora.C02.Aplication.CasosUso.FavoritoUseCase.Command;
 using Corretora.C02.Aplication.CasosUso.FavoritoUseCase.Queries;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.Command;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.Queries;
-using Corretora.C02.Aplication.CasosUso.ProprietarioUseCase.Command;
-using Corretora.C02.Aplication.CasosUso.ProprietarioUseCase.Queries;
 using Corretora.C02.Aplication.CasosUso.PerfilUseCase.Command;
 using Corretora.C02.Aplication.AuthUseCase.Command;
 using Corretora.C03.Infra.Servico.AuthService;
@@ -33,7 +32,34 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // Substitui AddOpenApi() por:
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Insere: Bearer {token}"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -75,10 +101,6 @@ builder.Services.AddScoped<ActualizarEstadoSolicitacao>();
 builder.Services.AddScoped<PesquisarSolicitacaoPorId>();
 builder.Services.AddScoped<PesquisarSolicitacoesDoCliente>();
 
-builder.Services.AddScoped<CadastrarProprietario>();
-builder.Services.AddScoped<ActualizarProprietario>();
-builder.Services.AddScoped<PesquisarProprietarioPorId>();
-builder.Services.AddScoped<PesquisarTodosProprietarios>();
 
 builder.Services.AddScoped<CadastrarPerfil>();
 

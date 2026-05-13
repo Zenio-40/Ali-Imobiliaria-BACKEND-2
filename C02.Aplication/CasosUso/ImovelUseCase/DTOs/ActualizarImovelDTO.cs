@@ -23,8 +23,6 @@ public class ActualizarImovelDTO
     [Required(ErrorMessage = "Selecione o funcionario responsavel.")]
     public int IdFuncionario { get; set; }
 
-    public int? IdProprietario { get; set; }
-
     public int? IdBairro { get; set; }
 
     public int? IdMunicipio { get; set; }

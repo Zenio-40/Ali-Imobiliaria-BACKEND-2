@@ -6,7 +6,6 @@ using Corretora.C01.Domain;
 using Corretora.C02.Aplication.CasosUso.ClienteUseCase.Queries;
 using Corretora.C02.Aplication.CasosUso.ImovelUseCase.Command;
 using Corretora.C02.Aplication.CasosUso.ImovelUseCase.DTOs;
-using Corretora.C02.Aplication.CasosUso.ProprietarioUseCase.Queries;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.Command;
 using Corretora.C02.Aplication.CasosUso.SolicitacaoUseCase.DTOs;
 using Corretora.C03.Infra.Data;
@@ -20,20 +19,17 @@ public class CorretoraController : ControllerBase
 {
     private readonly CorretoraDbContext _context;
     private readonly PesquisarTodosClientes _pesquisarClientes;
-    private readonly PesquisarTodosProprietarios _pesquisarProprietarios;
     private readonly CadastrarImovel _cadastrarImovel;
     private readonly ActualizarEstadoSolicitacao _actualizarEstadoSolicitacao;
 
     public CorretoraController(
         CorretoraDbContext context,
         PesquisarTodosClientes pesquisarClientes,
-        PesquisarTodosProprietarios pesquisarProprietarios,
         CadastrarImovel cadastrarImovel,
         ActualizarEstadoSolicitacao actualizarEstadoSolicitacao)
     {
         _context = context;
         _pesquisarClientes = pesquisarClientes;
-        _pesquisarProprietarios = pesquisarProprietarios;
         _cadastrarImovel = cadastrarImovel;
         _actualizarEstadoSolicitacao = actualizarEstadoSolicitacao;
     }
@@ -47,7 +43,6 @@ public class CorretoraController : ControllerBase
         var totalImoveis = await query.CountAsync();
         var totalPendentes = await query.CountAsync(i => i.EstadoAprovacao == "Pendente");
         var (clientes, _, _) = await _pesquisarClientes.Executar(1, 100);
-        var (proprietarios, _, _) = await _pesquisarProprietarios.Executar(1, 100);
 
         return Ok(new
         {
@@ -57,7 +52,6 @@ public class CorretoraController : ControllerBase
                 totalImoveis,
                 totalPendentes,
                 totalClientes = clientes?.Count() ?? 0,
-                totalProprietarios = proprietarios?.Count() ?? 0
             }
         });
     }
@@ -92,12 +86,6 @@ public class CorretoraController : ControllerBase
         return StatusCode(codigo, new { dados, mensagem, codigo });
     }
 
-    [HttpGet("proprietarios")]
-    public async Task<IActionResult> GetProprietarios([FromQuery] int pagina = 1, [FromQuery] int quantidade = 20)
-    {
-        var (dados, mensagem, codigo) = await _pesquisarProprietarios.Executar(pagina, quantidade);
-        return StatusCode(codigo, new { dados, mensagem, codigo });
-    }
 
     [HttpGet("solicitacoes")]
     public async Task<IActionResult> GetSolicitacoes([FromQuery] int? funcionarioId = null, [FromQuery] int pagina = 1, [FromQuery] int quantidade = 20)
