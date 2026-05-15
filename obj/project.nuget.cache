@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eYX1yhsg578=",
+  "dgSpecHash": "vr3GJPFAy4o=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zênio\\Desktop\\Ali-Imobiliaria-BACKEND 2\\Corretora.csproj",
+  "projectFilePath": "C:\\Users\\Zênio\\Documents\\Ali-Imobiliaria-BACKEND-2\\Corretora.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zênio\\.nuget\\packages\\africastalking.net\\1.2.4\\africastalking.net.1.2.4.nupkg.sha512",
     "C:\\Users\\Zênio\\.nuget\\packages\\bcrypt.net-next\\4.1.0\\bcrypt.net-next.4.1.0.nupkg.sha512",

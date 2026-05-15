@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zênio\\Desktop\\Ali-Imobiliaria-BACKEND 2\\Corretora.csproj": {}
+    "C:\\Users\\Zênio\\Documents\\Ali-Imobiliaria-BACKEND-2\\Corretora.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zênio\\Desktop\\Ali-Imobiliaria-BACKEND 2\\Corretora.csproj": {
+    "C:\\Users\\Zênio\\Documents\\Ali-Imobiliaria-BACKEND-2\\Corretora.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zênio\\Desktop\\Ali-Imobiliaria-BACKEND 2\\Corretora.csproj",
+        "projectUniqueName": "C:\\Users\\Zênio\\Documents\\Ali-Imobiliaria-BACKEND-2\\Corretora.csproj",
         "projectName": "Corretora",
-        "projectPath": "C:\\Users\\Zênio\\Desktop\\Ali-Imobiliaria-BACKEND 2\\Corretora.csproj",
+        "projectPath": "C:\\Users\\Zênio\\Documents\\Ali-Imobiliaria-BACKEND-2\\Corretora.csproj",
         "packagesPath": "C:\\Users\\Zênio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zênio\\Desktop\\Ali-Imobiliaria-BACKEND 2\\obj\\",
+        "outputPath": "C:\\Users\\Zênio\\Documents\\Ali-Imobiliaria-BACKEND-2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Zênio\\AppData\\Roaming\\NuGet\\NuGet.Config"
