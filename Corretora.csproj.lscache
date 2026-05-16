@@ -320,11 +320,6 @@ C04.Controllers/
  ClienteController.cs
  CorretoraController.cs
 Contrato.cs
-FRONTEND/
- C01.Domain/Class1.cs
- C02.Aplication/Class1.cs
- C03.Infra/Class1.cs
- C04.Controllers/Class1.cs
 Migrations/
  20260506212427_AddClienteCredencial.cs
  20260506212427_AddClienteCredencial.Designer.cs

@@ -1,48 +1,28 @@
-# TODO - Modelar Frontend com base no Backend
+# TODO - Separação Frontends (Cliente x Funcionários)
 
-## Passo 1 — Planejamento e contrato
-- [x] Levantar rotas do backend (Auth/Cliente/Admin/Corretora)
-- [x] Analisar frontend (rotas/estado atual com mock-data)
-- [x] Aprovar plano para substituir mock-data por API
+## Passo 1
+- [ ] Criar estrutura de pastas para 2 frontends: `FRONTEND/client` e `FRONTEND/staff`.
 
-## Passo 2 — Camada API
-- [x] Criar `FRONTEND/src/lib/api.ts` com wrapper de fetch (baseURL, Authorization Bearer, parse de respostas)
+## Passo 2
+- [ ] Copiar/compartilhar código base: components comuns, UI, hooks e lib/store.
+- [ ] Definir como compartilhar: via imports (sem duplicar em excesso) usando um “package” local ou via cópia controlada.
 
+## Passo 3
+- [ ] Criar entrypoints próprios de router para cada frontend.
+- [ ] Ajustar rotas: cliente só com `cliente.*` + `login-cliente` (+ páginas públicas necessárias).
+- [ ] Ajustar rotas: staff/admin/corretor só com `admin.*` `corretor.*` + `login-funcionarios` (+ páginas públicas necessárias).
 
+## Passo 4
+- [ ] Criar/ajustar configs Vite e scripts npm para rodar os 2 frontends.
 
+## Passo 5
+- [ ] Garantir que ambos usam a MESMA API (`VITE_API_BASE_URL` e `api.ts`).
 
-## Passo 3 — Autenticação real
-- [x] Atualizar `FRONTEND/src/store/auth.ts`:
+## Passo 6
+- [ ] Testar localmente:
+  - [ ] Frontend Cliente: login cliente, páginas de favoritos/visitas.
+  - [ ] Frontend Staff: login funcionário, dashboards/imóveis/admin.
 
-  - [ ] Implementar login via `POST /api/auth/login/funcionario`
-  - [ ] Guardar token JWT no Zustand (persist)
-  - [ ] Fazer logout limpar token
-
-## Passo 4 — Dados públicos (imóveis)
-- [ ] Substituir `useProperties`/mock-data no catálogo:
-  - [ ] Criar/atualizar store para buscar `GET /api/cliente/imoveis?pagina=&quantidade=`
-  - [ ] Ajustar rota `FRONTEND/src/routes/imoveis.index.tsx` e `FRONTEND/src/routes/imoveis.$id.tsx`
-
-## Passo 5 — Cliente (favoritos e visitas/solicitações)
-- [ ] Atualizar rotas:
-  - [ ] `cliente.favoritos.tsx`: listar via `GET /api/cliente/favoritos/{clienteId}`
-  - [ ] `cliente.visitas.tsx`: listar via `GET /api/cliente/solicitacoes/cliente/{clienteId}`
-  - [ ] Ajustar add/remove favorito para usar `POST /api/cliente/favorito` e `DELETE /api/cliente/favorito/{id}`
-
-## Passo 6 — Painéis Admin/Corretora
-- [ ] Atualizar rotas:
-  - [ ] `admin.index.tsx`: usar `GET /api/admin/dashboard`
-  - [ ] `admin.imoveis.tsx` e `admin.imoveis.inativos.tsx`: usar endpoints reais para listagem/ativar/desativar
-  - [ ] `admin.utilizadores.tsx`: usar endpoints reais para listagem de funcionários/proprietários
-  - [ ] `corretor.index.tsx`: usar `GET /api/corretora/dashboard`
-  - [ ] `corretor.imoveis.tsx`: usar endpoints reais para listagem dos imóveis do corretor
-
-## Passo 7 — Ajustes de tipos/DTO
-- [ ] Alinhar `FRONTEND/src/lib/types.ts` com shape real retornado pelo backend (campos e nomenclatura)
-
-## Passo 8 — Testes
-- [ ] Rodar `npm run dev`
-- [ ] Testar: login funcionarios -> dashboard admin/corretor
-- [ ] Testar: catálogo de imóveis e detalhes
-- [ ] Testar: favoritos e visitas do cliente
+## Passo 7
+- [ ] Ajustar build/deploy se houver.
 

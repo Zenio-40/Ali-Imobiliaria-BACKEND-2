@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AfricasTalking.NET" Version="1.2.4" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
@@ -18,7 +16,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="C02.Aplication\" />
     <Folder Include="C02.Aplication\AuthUseCase\" />
@@ -52,5 +49,4 @@
     <Folder Include="C03.Infra\Servico\AuthService\" />
     <Folder Include="C03.Infra\Servico\SmsService\" />
   </ItemGroup>
-
 </Project>
